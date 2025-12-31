@@ -8,13 +8,41 @@
 <script setup lang="ts">
 import type GridSquare from "~/types/grid.ts";
 
-const grids: GridSquare[] = [];
-
-for (let i = 0; i < 9; i++) {
-	const grid_square: GridSquare = {
+const grids: GridSquare[] = [
+	{
 		content_index: 0,
-	};
+	},
+	{
+		content_index: 0,
+	},
+	{
+		content_index: 0,
+	},
+	{
+		content_index: 0,
+	},
+	{
+		content_index: 1,
+	},
+	{
+		content_index: 0,
+	},
+	{
+		content_index: 0,
+	},
+	{
+		content_index: 0,
+	},
+	{
+		content_index: 0,
+	},
+];
 
-	grids.push(grid_square);
-}
+// for (let i = 0; i < 9; i++) {
+// 	const grid_square: GridSquare = {
+// 		content_index: 0,
+// 	};
+
+// 	grids.push(grid_square);
+// }
 </script>
