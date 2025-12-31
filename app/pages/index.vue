@@ -1,6 +1,6 @@
 <template>
-	<main class="w-screen h-screen flex flex-col items-center my-10">
-		<h1 class="text-center text-3xl font-bold mb-30">Hello World!</h1>
+	<main class="w-screen min-h-screen flex flex-col items-center my-10">
+		<h1 class="text-center text-3xl font-bold mb-15">Hello World!</h1>
 		<GridComponent :grids="grids" class="" />
 	</main>
 </template>

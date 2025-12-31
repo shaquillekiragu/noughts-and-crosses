@@ -1,10 +1,10 @@
 <template>
 	<article
-		class="w-1/3 h-1/3"
+		class="w-full aspect-square hover:cursor-pointer hover:bg-slate-100"
 		:class="{
-			'border-x-2': index === 1 || index === 7,
-			'border-y-2': index === 3 || index === 5,
-			'border-2': index === 4,
+			'border-x-5': index === 1 || index === 7,
+			'border-y-5': index === 3 || index === 5,
+			'border-5': index === 4,
 		}"
 	></article>
 </template>
