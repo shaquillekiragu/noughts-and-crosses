@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import type { PropType } from "vue";
-import type GridSquare from "~/types/grid.ts";
+import type GridSquare from "~~/types/grid-square.ts";
 
 const { grids } = defineProps({
 	grids: Array as PropType<GridSquare[]>,
