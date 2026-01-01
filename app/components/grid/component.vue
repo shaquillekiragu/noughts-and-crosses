@@ -7,7 +7,7 @@
 			:key="index"
 			:grid_square="grid_square"
 			:index="index"
-			@grid-square-click="handleSquareClick"
+			@on-click-emit="onClickEmitTwo"
 		/>
 	</section>
 </template>
@@ -20,7 +20,11 @@ const { grids } = defineProps({
 	grids: Array as PropType<GridSquare[]>,
 });
 
-function handleSquareClick(index: number, new_content_index: 1 | 2) {
-	grids.value[index].content_index = new_content_index;
+const emits = defineEmits<{
+	"on-click-emit-two": [index: number, new_content_index: 1 | 2];
+}>();
+
+function onClickEmitTwo(index: number, new_content_index: 1 | 2) {
+	emits("on-click-emit-two", index, new_content_index);
 }
 </script>

@@ -2,9 +2,11 @@
 	<article
 		class="w-full aspect-square flex justify-center items-center hover:cursor-pointer hover:bg-slate-100"
 		:class="{
-			'border-x-5': index === 1 || index === 7,
-			'border-y-5': index === 3 || index === 5,
-			'border-5': index === 4,
+			'border-x-5 sm:border-x-6 2xl:border-x-8':
+				index === 1 || index === 7,
+			'border-y-5 sm:border-y-6 2xl:border-y-8':
+				index === 3 || index === 5,
+			'border-5 sm:border-6 2xl:border-8': index === 4,
 		}"
 		@click="onClick"
 	>
@@ -33,10 +35,12 @@ const { grid_square, index } = defineProps({
 });
 
 const emits = defineEmits<{
-	click: [index: number, new_content_index: 1 | 2];
+	"on-click-emit": [index: number, new_content_index: 1 | 2];
 }>();
 
 function onClick() {
-	emits("gridSquareClick", index, 1);
+	if (grid_square.content_index === 0) {
+		emits("on-click-emit", index, 1);
+	}
 }
 </script>
