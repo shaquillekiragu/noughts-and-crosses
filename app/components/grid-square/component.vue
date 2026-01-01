@@ -6,6 +6,7 @@
 			'border-y-5': index === 3 || index === 5,
 			'border-5': index === 4,
 		}"
+		@click="onClick"
 	>
 		<div
 			v-if="grid_square.content_index === 1"
@@ -30,4 +31,12 @@ const { grid_square, index } = defineProps({
 	grid_square: Object as PropType<GridSquare>,
 	index: Number,
 });
+
+const emits = defineEmits<{
+	click: [index: number, new_content_index: 1 | 2];
+}>();
+
+function onClick() {
+	emits("gridSquareClick", index, 1);
+}
 </script>

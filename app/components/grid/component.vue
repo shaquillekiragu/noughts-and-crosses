@@ -7,6 +7,7 @@
 			:key="index"
 			:grid_square="grid_square"
 			:index="index"
+			@grid-square-click="handleSquareClick"
 		/>
 	</section>
 </template>
@@ -18,4 +19,8 @@ import type GridSquare from "~~/types/grid-square.ts";
 const { grids } = defineProps({
 	grids: Array as PropType<GridSquare[]>,
 });
+
+function handleSquareClick(index: number, new_content_index: 1 | 2) {
+	grids.value[index].content_index = new_content_index;
+}
 </script>
