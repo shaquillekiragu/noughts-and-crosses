@@ -42,6 +42,14 @@ const grids = ref<GridSquare[]>([
 	},
 ]);
 
+// for (let i = 0; i < 9; i++) {
+// 	const grid_square: GridSquare = {
+// 		content_index: 0,
+// 	};
+
+// 	grids.push(grid_square);
+// }
+
 function handleSquareClick(index: number, new_content_index: 1 | 2) {
 	grids.value[index].content_index = new_content_index;
 }
