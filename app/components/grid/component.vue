@@ -1,6 +1,6 @@
 <template>
 	<section
-		class="grid grid-cols-3 w-3/4 h-3/4 sm:w-2/3 sm:h-2/3 md:w-3/5 md:h-3/5 lg:w-1/2 lg:h-1/2 xl:w-2/5 xl:h-2/5 2xl:w-1/3 2xl:h-1/3"
+		class="grid grid-cols-3 w-3/4 sm:w-2/3 md:w-3/5 lg:w-1/2 xl:w-2/5 2xl:w-1/3 aspect-square divide-x-5 divide-y-5 sm:divide-x-6 sm:divide-y-6 xl:divide-x-8 xl:divide-y-8"
 	>
 		<GridSquareComponent
 			v-for="(grid_square, index) in grids"

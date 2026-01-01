@@ -2,11 +2,10 @@
 	<article
 		class="w-full aspect-square flex justify-center items-center hover:cursor-pointer hover:bg-slate-100"
 		:class="{
-			'border-x-5 sm:border-x-6 2xl:border-x-8':
-				index === 1 || index === 7,
-			'border-y-5 sm:border-y-6 2xl:border-y-8':
-				index === 3 || index === 5,
-			'border-5 sm:border-6 2xl:border-8': index === 4,
+			'border-r-0 pr-[5px] sm:pr-[6px] xl:pr-[8px]':
+				index === 2 || index === 5,
+			'border-b-0 pb-[5px] sm:pb-[6px] xl:pb-[8px]':
+				index === 6 || index === 7,
 		}"
 		@click="onClick"
 	>
