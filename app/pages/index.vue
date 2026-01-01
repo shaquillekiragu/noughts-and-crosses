@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import type GridSquare from "~/types/grid.ts";
+import type GridSquare from "~~/types/grid-square.ts";
 
 const grids: GridSquare[] = [
 	{
@@ -25,7 +25,7 @@ const grids: GridSquare[] = [
 		content_index: 1,
 	},
 	{
-		content_index: 0,
+		content_index: 2,
 	},
 	{
 		content_index: 0,
