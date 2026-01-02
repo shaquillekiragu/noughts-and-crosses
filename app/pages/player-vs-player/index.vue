@@ -1,10 +1,13 @@
 <template>
 	<main
-		class="w-screen min-h-screen relative flex flex-col items-center my-15"
+		class="w-screen min-h-screen relative flex flex-col items-center my-10 mt-20 sm:my-15"
 	>
-		<BackButtonComponent link_url="/" class="absolute -top-1 left-35" />
+		<BackButtonComponent
+			link_url="/"
+			class="absolute left-[10vw] -top-13 sm:-top-2"
+		/>
 
-		<h1 class="text-center text-3xl font-bold mb-15">
+		<h1 class="text-center text-2xl sm:text-3xl font-bold mb-15">
 			Noughts and Crosses
 		</h1>
 
