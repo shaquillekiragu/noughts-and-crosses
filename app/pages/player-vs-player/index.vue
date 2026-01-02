@@ -1,8 +1,13 @@
 <template>
-	<main class="w-screen min-h-screen flex flex-col items-center my-10">
+	<main
+		class="w-screen min-h-screen relative flex flex-col items-center my-15"
+	>
+		<BackButtonComponent link_url="/" class="absolute -top-1 left-35" />
+
 		<h1 class="text-center text-3xl font-bold mb-15">
 			Noughts and Crosses
 		</h1>
+
 		<GridComponent
 			:grid="grid"
 			@on-click-emit-two="handlePlayerMove"
