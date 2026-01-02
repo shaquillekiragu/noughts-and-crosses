@@ -1,45 +1,17 @@
 <template>
 	<main class="w-screen min-h-screen flex flex-col items-center my-10">
-		<h1 class="text-center text-3xl font-bold mb-15">Hello World!</h1>
-		<GridComponent
-			:grid="grid"
-			@on-click-emit-two="handlePlayerMove"
-			class=""
-		/>
+		<h1 class="text-center text-3xl font-bold mb-15">
+			Noughts and Crosses
+		</h1>
+		<section class="w-full flex flex-col items-center">
+			<h2 class="text-center text-2xl font-bold mb-10">
+				Player 1 - Choose your side
+			</h2>
+
+			<button class=""></button>
+			<button class=""></button>
+		</section>
 	</main>
 </template>
 
-<script setup lang="ts">
-import { nextTick } from "vue";
-import checkForWin from "~/composables/checkForWin";
-import type GridSquare from "~~/types/grid-square.ts";
-import type CheckForWinReturnObject from "~~/types/check-for-win-return-object";
-
-const grid = ref<GridSquare[]>([]);
-
-for (let i = 0; i < 9; i++) {
-	grid.value.push({
-		content_index: 0,
-	});
-}
-
-console.log(grid.value, " < initial grid");
-
-async function handlePlayerMove(index: number, new_content_index: 1 | 2) {
-	grid.value[index].content_index = new_content_index;
-
-	await nextTick();
-
-	const win_info: CheckForWinReturnObject = checkForWin(grid.value);
-
-	if (win_info.meets_win_condition === true) {
-		setTimeout(() => {
-			console.log("win");
-			for (const square of grid.value) {
-				square.content_index = 0;
-			}
-			alert("You win! Click 'Ok' to play again.");
-		}, 300);
-	}
-}
-</script>
+<script setup lang="ts"></script>
