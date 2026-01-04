@@ -1,8 +1,9 @@
 <template>
-	<main class="w-screen min-h-screen flex flex-col items-center my-10 mt-20">
+	<main class="w-screen min-h-screen flex flex-col items-center mt-20">
 		<h1 class="text-center text-2xl sm:text-3xl font-bold mb-50">
 			Noughts and Crosses
 		</h1>
+
 		<section class="w-full flex flex-col items-center">
 			<h2 class="text-center text-lg sm:text-xl font-bold mb-10">
 				Player 1: Choose your side:
@@ -30,6 +31,8 @@
 				</NuxtLink>
 			</div>
 		</section>
+
+		<FooterComponent />
 	</main>
 </template>
 

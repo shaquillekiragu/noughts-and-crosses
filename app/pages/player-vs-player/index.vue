@@ -1,7 +1,9 @@
 <template>
 	<main
-		class="w-screen min-h-screen relative flex flex-col items-center my-10 mt-20 sm:my-15"
+		class="w-screen min-h-screen relative flex flex-col items-center mt-20 sm:mt-15"
 	>
+		<HeaderComponent />
+
 		<BackButtonComponent
 			link_url="/"
 			class="absolute left-[10vw] -top-13 sm:-top-2"
@@ -16,12 +18,13 @@
 			@on-click-emit-two="handlePlayerMove"
 			class=""
 		/>
+
+		<FooterComponent />
 	</main>
 </template>
 
 <script setup lang="ts">
 import { nextTick } from "vue";
-import checkForWin from "~/composables/checkForWin";
 import useGameState from "~/composables/useGameState";
 import checkForWin from "~/composables/checkForWin";
 import checkForDraw from "~/composables/checkForDraw";
