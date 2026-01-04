@@ -27,17 +27,23 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 import type GridSquare from "~~/types/grid-square.ts";
-import useGameState from "~/composables/useGameState";
+import type PlayerSymbolMap from "~~/types/player-symbol-map.ts";
 
-const { current_player, player_symbol_map } = useGameState();
-
-const { grid_square, index } = defineProps({
+const { grid_square, index, current_player, player_symbol_map } = defineProps({
 	grid_square: {
 		type: Object as PropType<GridSquare>,
 		required: true,
 	},
 	index: {
 		type: Number,
+		required: true,
+	},
+	current_player: {
+		type: Number as PropType<1 | 2>,
+		required: true,
+	},
+	player_symbol_map: {
+		type: Object as PropType<PlayerSymbolMap>,
 		required: true,
 	},
 });
@@ -47,17 +53,18 @@ const emits = defineEmits<{
 }>();
 
 function onClick() {
-	if (grid_square.symbol_index === 0 && current_player.value === 1) {
-		const new_symbol_index: 1 | 2 = player_symbol_map.value.player_one;
+	console.log(current_player, " < cp");
 
-		grid_square.symbol_index = new_symbol_index;
-		emits("on-click-emit", index, new_symbol_index);
-		//
-	} else if (grid_square.symbol_index === 0 && current_player.value === 2) {
-		const new_symbol_index: 1 | 2 = player_symbol_map.value.player_two;
+	if (grid_square.symbol_index === 0 && current_player === 1) {
+		console.log(player_symbol_map.player_one, " < gs_si p1");
 
-		grid_square.symbol_index = new_symbol_index;
-		emits("on-click-emit", index, new_symbol_index);
+		grid_square.symbol_index = player_symbol_map.player_one;
+		emits("on-click-emit", index, player_symbol_map.player_one);
+	} else if (grid_square.symbol_index === 0 && current_player === 2) {
+		console.log(player_symbol_map.player_two, " < gs_si p2");
+
+		grid_square.symbol_index = player_symbol_map.player_two;
+		emits("on-click-emit", index, player_symbol_map.player_two);
 	}
 }
 </script>

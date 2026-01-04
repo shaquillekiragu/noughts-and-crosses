@@ -2,7 +2,7 @@
 	<main
 		class="w-screen min-h-screen relative flex flex-col items-center mt-20 sm:mt-15"
 	>
-		<HeaderComponent />
+		<HeaderComponent :current_player="current_player" />
 
 		<BackButtonComponent
 			link_url="/"
@@ -15,6 +15,8 @@
 
 		<GridComponent
 			:grid="grid"
+			:current_player="current_player"
+			:player_symbol_map="player_symbol_map"
 			@on-click-emit-two="handlePlayerMove"
 			class=""
 		/>
@@ -35,6 +37,7 @@ const {
 	is_playing,
 	player_has_won,
 	game_is_a_draw,
+	player_symbol_map,
 	resetGame,
 } = useGameState();
 
@@ -74,7 +77,10 @@ async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
 			resetGame();
 		}, 300);
 	} else {
+		console.log(current_player.value, " < current player to switch");
 		current_player.value = current_player.value === 1 ? 2 : 1;
 	}
 }
 </script>
+
+<!-- Handle navigation to homepage after resetting the game after a win or draw -->

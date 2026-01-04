@@ -9,7 +9,12 @@
 </template>
 
 <script setup lang="ts">
-import useGameState from "~/composables/useGameState";
+import type { PropType } from "vue";
 
-const { current_player } = useGameState();
+const { current_player } = defineProps({
+	current_player: {
+		type: Number as PropType<1 | 2>,
+		required: true,
+	},
+});
 </script>
