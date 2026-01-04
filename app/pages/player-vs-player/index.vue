@@ -22,34 +22,45 @@
 <script setup lang="ts">
 import { nextTick } from "vue";
 import checkForWin from "~/composables/checkForWin";
-import type GridSquare from "~~/types/grid-square.ts";
-import type CheckForWinReturnObject from "~~/types/check-for-win-return-object";
+import useGameState from "~/composables/useGameState";
 
-const grid = ref<GridSquare[]>([]);
-
-for (let i = 0; i < 9; i++) {
-	grid.value.push({
-		content_index: 0,
-	});
-}
+const {
+	grid,
+	current_player,
+	is_playing,
+	player_has_won,
+	game_is_a_draw,
+	resetGame,
+} = useGameState();
 
 console.log(grid.value, " < initial grid");
 
 async function handlePlayerMove(index: number, new_content_index: 1 | 2) {
-	grid.value[index].content_index = new_content_index;
+	if (!is_playing.value) {
+		return;
+	}
+
+	const square = grid.value[index];
+
+	if (!square || index < 0 || index >= grid.value.length) {
+		return;
+	}
+	square.content_index = new_content_index;
 
 	await nextTick();
 
-	const win_info: CheckForWinReturnObject = checkForWin(grid.value);
+	checkForWin(grid, player_has_won);
 
-	if (win_info.meets_win_condition === true) {
+	if (player_has_won.value === true) {
+		is_playing.value = false;
+
 		setTimeout(() => {
 			console.log("win");
-			for (const square of grid.value) {
-				square.content_index = 0;
-			}
 			alert("You win! Click 'Ok' to play again.");
+			resetGame();
 		}, 300);
+	} else {
+		current_player.value = current_player.value === 1 ? 2 : 1;
 	}
 }
 </script>

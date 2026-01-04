@@ -1,9 +1,10 @@
+import type { Ref } from "vue";
 import type GridSquare from "~~/types/grid-square";
-import type CheckForWinReturnObject from "~~/types/check-for-win-return-object";
 
 export default function checkForWin(
-	grid_array: GridSquare[]
-): CheckForWinReturnObject {
+	grid: Ref<GridSquare[]>,
+	player_has_won: Ref<boolean>
+): void {
 	const possible_wins: [number, number, number][] = [
 		[0, 1, 2],
 		[3, 4, 5],
@@ -15,32 +16,27 @@ export default function checkForWin(
 		[2, 4, 6],
 	];
 
-	for (const condition of possible_wins) {
+	for (const [index, condition] of possible_wins.entries()) {
 		const [index_zero, index_one, index_two] = condition;
 
-		const square_zero = grid_array[index_zero];
-		const square_one = grid_array[index_one];
-		const square_two = grid_array[index_two];
+		const square_zero = grid.value[index_zero];
+		const square_one = grid.value[index_one];
+		const square_two = grid.value[index_two];
 
 		if (!square_zero || !square_one || !square_two) {
 			continue;
 		}
 
-		const meets_win_condition: boolean =
+		const meets_win_condition =
 			square_zero.content_index === square_one.content_index &&
 			square_one.content_index === square_two.content_index &&
 			square_zero.content_index !== 0;
 
-		if (meets_win_condition === true) {
-			return {
-				meets_win_condition: true,
-				content_index: square_zero.content_index,
-			};
+		if (meets_win_condition) {
+			player_has_won.value = true;
+			return;
 		}
 	}
 
-	return {
-		meets_win_condition: false,
-		content_index: 0,
-	};
+	player_has_won.value = false;
 }
