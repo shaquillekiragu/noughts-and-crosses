@@ -17,7 +17,10 @@ import type { PropType } from "vue";
 import type GridSquare from "~~/types/grid-square.ts";
 
 const { grid } = defineProps({
-	grid: Array as PropType<GridSquare[]>,
+	grid: {
+		type: Array as PropType<GridSquare[]>,
+		required: true,
+	},
 });
 
 const emits = defineEmits<{
