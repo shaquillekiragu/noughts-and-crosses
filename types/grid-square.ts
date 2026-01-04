@@ -1,3 +1,3 @@
 export default interface GridSquare {
-	content_index: 0 | 1 | 2;
+	symbol_index: 0 | 1 | 2;
 }

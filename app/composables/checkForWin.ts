@@ -16,7 +16,7 @@ export default function checkForWin(
 		[2, 4, 6],
 	];
 
-	for (const [index, condition] of possible_wins.entries()) {
+	for (const condition of possible_wins) {
 		const [index_zero, index_one, index_two] = condition;
 
 		const square_zero = grid.value[index_zero];
@@ -28,9 +28,9 @@ export default function checkForWin(
 		}
 
 		const meets_win_condition =
-			square_zero.content_index === square_one.content_index &&
-			square_one.content_index === square_two.content_index &&
-			square_zero.content_index !== 0;
+			square_zero.symbol_index === square_one.symbol_index &&
+			square_one.symbol_index === square_two.symbol_index &&
+			square_zero.symbol_index !== 0;
 
 		if (meets_win_condition) {
 			player_has_won.value = true;

@@ -24,10 +24,10 @@ const { grid } = defineProps({
 });
 
 const emits = defineEmits<{
-	"on-click-emit-two": [index: number, new_content_index: 1 | 2];
+	"on-click-emit-two": [index: number, new_symbol_index: 1 | 2];
 }>();
 
-function onClickEmitTwo(index: number, new_content_index: 1 | 2) {
-	emits("on-click-emit-two", index, new_content_index);
+function onClickEmitTwo(index: number, new_symbol_index: 1 | 2) {
+	emits("on-click-emit-two", index, new_symbol_index);
 }
 </script>

@@ -23,6 +23,8 @@
 import { nextTick } from "vue";
 import checkForWin from "~/composables/checkForWin";
 import useGameState from "~/composables/useGameState";
+import checkForWin from "~/composables/checkForWin";
+import checkForDraw from "~/composables/checkForDraw";
 
 const {
 	grid,
@@ -35,7 +37,7 @@ const {
 
 console.log(grid.value, " < initial grid");
 
-async function handlePlayerMove(index: number, new_content_index: 1 | 2) {
+async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
 	if (!is_playing.value) {
 		return;
 	}
@@ -45,11 +47,12 @@ async function handlePlayerMove(index: number, new_content_index: 1 | 2) {
 	if (!square || index < 0 || index >= grid.value.length) {
 		return;
 	}
-	square.content_index = new_content_index;
+	square.symbol_index = new_symbol_index;
 
 	await nextTick();
 
 	checkForWin(grid, player_has_won);
+	checkForDraw(grid, game_is_a_draw);
 
 	if (player_has_won.value === true) {
 		is_playing.value = false;
@@ -57,6 +60,14 @@ async function handlePlayerMove(index: number, new_content_index: 1 | 2) {
 		setTimeout(() => {
 			console.log("win");
 			alert("You win! Click 'Ok' to play again.");
+			resetGame();
+		}, 300);
+	} else if (game_is_a_draw.value === true) {
+		is_playing.value = false;
+
+		setTimeout(() => {
+			console.log("draw");
+			alert("It's a draw! Nice try, click 'Ok' to play again.");
 			resetGame();
 		}, 300);
 	} else {

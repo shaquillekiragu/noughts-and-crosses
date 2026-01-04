@@ -14,15 +14,18 @@
 				<NuxtLink
 					to="/player-vs-player"
 					class="bg-green-800"
-					@click="handleButtonClick(1)"
+					@click="handleChooseSymbolClick(1)"
 				>
+					<!-- The symbol index for Noughts is 1 -->
 					Noughts
 				</NuxtLink>
+
 				<NuxtLink
 					to="/player-vs-player"
 					class="bg-blue-800"
-					@click="handleButtonClick(2)"
+					@click="handleChooseSymbolClick(2)"
 				>
+					<!-- The symbol index for Noughts is 2 -->
 					Crosses
 				</NuxtLink>
 			</div>
@@ -31,5 +34,14 @@
 </template>
 
 <script setup lang="ts">
-function handleButtonClick(content_index: number) {}
+import useGameState from "~/composables/useGameState";
+
+const { player_symbol_map } = useGameState();
+
+function handleChooseSymbolClick(symbol_index: 1 | 2) {
+	player_symbol_map.value.player_one = symbol_index;
+
+	player_symbol_map.value.player_two =
+		player_symbol_map.value.player_one === 1 ? 2 : 1;
+}
 </script>
