@@ -64,6 +64,7 @@ async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
 			alert("You win! Click 'Ok' to play again.");
 			resetGame();
 		}, 300);
+		//
 	} else if (game_is_a_draw.value === true) {
 		is_playing.value = false;
 
@@ -71,6 +72,7 @@ async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
 			alert("It's a draw! Nice try, click 'Ok' to play again.");
 			resetGame();
 		}, 300);
+		//
 	} else {
 		current_player.value = current_player.value === 1 ? 2 : 1;
 	}

@@ -28,6 +28,7 @@ export default function useGameState() {
 	}
 
 	function resetGame() {
+		navigateTo("/");
 		initializeGrid();
 
 		current_player.value = 1;
