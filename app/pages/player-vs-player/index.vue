@@ -29,24 +29,23 @@
 import { nextTick } from "vue";
 import useGameState from "~/composables/useGameState";
 import checkForWin from "~/composables/checkForWin";
-import checkForDraw from "~/composables/checkForDraw";
 
 const {
 	grid,
 	current_player,
 	is_playing,
+	game_turn,
 	player_has_won,
 	game_is_a_draw,
 	player_symbol_map,
 	resetGame,
 } = useGameState();
 
-console.log(grid.value, " < initial grid");
-
 async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
 	if (!is_playing.value) {
 		return;
 	}
+	game_turn.value++;
 
 	const square = grid.value[index];
 
@@ -56,15 +55,12 @@ async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
 	square.symbol_index = new_symbol_index;
 
 	await nextTick();
-
-	checkForWin(grid, player_has_won);
-	checkForDraw(grid, game_is_a_draw);
+	checkForWin(grid, player_has_won, game_is_a_draw, game_turn);
 
 	if (player_has_won.value === true) {
 		is_playing.value = false;
 
 		setTimeout(() => {
-			console.log("win");
 			alert("You win! Click 'Ok' to play again.");
 			resetGame();
 		}, 300);
@@ -72,12 +68,10 @@ async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
 		is_playing.value = false;
 
 		setTimeout(() => {
-			console.log("draw");
 			alert("It's a draw! Nice try, click 'Ok' to play again.");
 			resetGame();
 		}, 300);
 	} else {
-		console.log(current_player.value, " < current player to switch");
 		current_player.value = current_player.value === 1 ? 2 : 1;
 	}
 }

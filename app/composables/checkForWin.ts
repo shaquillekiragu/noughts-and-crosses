@@ -3,7 +3,9 @@ import type GridSquare from "~~/types/grid-square";
 
 export default function checkForWin(
 	grid: Ref<GridSquare[]>,
-	player_has_won: Ref<boolean>
+	player_has_won: Ref<boolean>,
+	game_is_a_draw: Ref<boolean>,
+	game_turn: Ref<number>
 ): void {
 	const possible_wins: [number, number, number][] = [
 		[0, 1, 2],
@@ -38,5 +40,7 @@ export default function checkForWin(
 		}
 	}
 
-	player_has_won.value = false;
+	if (game_turn.value === 9) {
+		game_is_a_draw.value = true;
+	}
 }

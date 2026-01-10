@@ -5,6 +5,7 @@ export default function useGameState() {
 	const grid = ref<GridSquare[]>([]);
 	const current_player = ref<1 | 2>(1);
 	const is_playing = ref<boolean>(true);
+	const game_turn = ref<number>(0);
 	const player_has_won = ref<boolean>(false);
 	const game_is_a_draw = ref<boolean>(false);
 
@@ -31,6 +32,7 @@ export default function useGameState() {
 
 		current_player.value = 1;
 		is_playing.value = true;
+		game_turn.value = 0;
 		player_has_won.value = false;
 		game_is_a_draw.value = false;
 
@@ -46,6 +48,7 @@ export default function useGameState() {
 		grid,
 		current_player,
 		is_playing,
+		game_turn,
 		player_has_won,
 		game_is_a_draw,
 		player_symbol_map,
