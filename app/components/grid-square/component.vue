@@ -53,17 +53,16 @@ const emits = defineEmits<{
 }>();
 
 function onClick() {
-	console.log(current_player, " < cp");
-
 	if (grid_square.symbol_index === 0 && current_player === 1) {
-		console.log(player_symbol_map.player_one, " < gs_si p1");
-
+		//
 		grid_square.symbol_index = player_symbol_map.player_one;
-		emits("on-click-emit", index, player_symbol_map.player_one);
-	} else if (grid_square.symbol_index === 0 && current_player === 2) {
-		console.log(player_symbol_map.player_two, " < gs_si p2");
 
+		emits("on-click-emit", index, player_symbol_map.player_one);
+		//
+	} else if (grid_square.symbol_index === 0 && current_player === 2) {
+		//
 		grid_square.symbol_index = player_symbol_map.player_two;
+
 		emits("on-click-emit", index, player_symbol_map.player_two);
 	}
 }
