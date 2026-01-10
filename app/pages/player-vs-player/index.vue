@@ -78,5 +78,3 @@ async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
 	}
 }
 </script>
-
-<!-- Handle navigation to homepage after resetting the game after a win or draw -->
