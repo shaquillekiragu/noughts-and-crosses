@@ -23,7 +23,7 @@
 			:player_symbol_map="player_symbol_map"
 			:is_playing="is_playing"
 			:game_turn="game_turn"
-			@on-click-emit-two="handlePlayerMove"
+			@game-move-emit-two="handleGameMove"
 			class=""
 		/>
 
@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { nextTick } from "vue";
 import useGameState from "~/composables/useGameState";
-import checkForWin from "~/composables/checkForWin";
+import useWinCheck from "~/composables/useWinCheck";
 
 const {
 	game_mode,
@@ -48,7 +48,7 @@ const {
 	resetGame,
 } = useGameState();
 
-async function handlePlayerMove(
+async function handleGameMove(
 	index: number,
 	new_symbol: 0 | "nought" | "cross"
 ) {
@@ -70,17 +70,15 @@ async function handlePlayerMove(
 	game_turn.value++;
 
 	await nextTick();
-	checkForWin(grid, player_has_won, game_is_a_draw, game_turn);
+	useWinCheck(grid, player_has_won, game_is_a_draw, game_turn);
 
-	const winning_player = current_player.value;
+	const winner = current_player.value;
 
 	if (player_has_won.value === true) {
 		is_playing.value = false;
 
 		setTimeout(() => {
-			alert(
-				`Player ${winning_player} wins! Click 'Ok' to play a new game.`
-			);
+			alert(`Player ${winner} wins! Click 'Ok' to play a new game.`);
 			resetGame();
 		}, 300);
 		//

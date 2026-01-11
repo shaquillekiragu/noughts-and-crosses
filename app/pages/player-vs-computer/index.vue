@@ -23,7 +23,7 @@
 			:player_symbol_map="player_symbol_map"
 			:is_playing="is_playing"
 			:game_turn="game_turn"
-			@on-click-emit-two="handlePlayerMove"
+			@game-move-emit-two="handleGameMove"
 			class=""
 		/>
 
@@ -34,7 +34,8 @@
 <script setup lang="ts">
 import { nextTick } from "vue";
 import useGameState from "~/composables/useGameState";
-import checkForWin from "~/composables/checkForWin";
+import useWinCheck from "~/composables/useWinCheck";
+import useComputerMove from "~/composables/useComputerMove";
 
 const {
 	game_mode,
@@ -48,7 +49,7 @@ const {
 	resetGame,
 } = useGameState();
 
-async function handlePlayerMove(
+async function handleGameMove(
 	index: number,
 	new_symbol: 0 | "nought" | "cross"
 ) {
@@ -70,28 +71,42 @@ async function handlePlayerMove(
 	game_turn.value++;
 
 	await nextTick();
-	checkForWin(grid, player_has_won, game_is_a_draw, game_turn);
+	useWinCheck(grid, player_has_won, game_is_a_draw, game_turn);
 
-	const winning_player = current_player.value === 1 ? "Player" : "Computer";
+	const winner = current_player.value === 1 ? "Player" : "Computer";
 
 	if (player_has_won.value === true) {
 		is_playing.value = false;
 
 		setTimeout(() => {
-			alert(`${winning_player} wins! Click 'Ok' to play a new game.`);
+			alert(`${winner} wins! Click 'Ok' to play a new game.`);
 			resetGame();
 		}, 300);
-		//
-	} else if (game_is_a_draw.value === true) {
+		return;
+	}
+
+	if (game_is_a_draw.value === true) {
 		is_playing.value = false;
 
 		setTimeout(() => {
 			alert("It's a draw! Nice try, click 'Ok' to play a new game.");
 			resetGame();
 		}, 300);
-		//
-	} else {
-		current_player.value = current_player.value === 1 ? 2 : 1;
+		return;
+	}
+
+	current_player.value = current_player.value === 1 ? 2 : 1;
+
+	if (
+		game_mode.value === "computer" &&
+		current_player.value === 2 &&
+		is_playing.value
+	) {
+		const random_index = useComputerMove(grid.value);
+
+		if (random_index >= 0 && random_index < grid.value.length) {
+			handleGameMove(random_index, player_symbol_map.value.player_two);
+		}
 	}
 }
 </script>

@@ -4,11 +4,17 @@
 		:class="{
 			'border-r-0 pr-[5px] sm:pr-[6px] xl:pr-[8px]':
 				index === 2 || index === 5,
+			//
 			'border-b-0 pb-[5px] sm:pb-[6px] xl:pb-[8px]':
 				index === 6 || index === 7,
+			//
 			'hover:cursor-pointer hover:bg-slate-100':
 				grid_square.symbol === 0 && is_playing,
-			'cursor-not-allowed': grid_square.symbol !== 0 || !is_playing,
+			//
+			'cursor-not-allowed':
+				grid_square.symbol !== 0 ||
+				!is_playing ||
+				(game_mode === 'computer' && current_player === 2),
 		}"
 		@click="onClick"
 	>
@@ -39,7 +45,6 @@ const {
 	current_player,
 	player_symbol_map,
 	is_playing,
-	game_turn,
 } = defineProps({
 	game_mode: {
 		type: String as PropType<0 | "player" | "computer">,
@@ -65,17 +70,13 @@ const {
 		type: Boolean,
 		required: true,
 	},
-	game_turn: {
-		type: Number,
-		required: true,
-	},
 });
 
 const emits = defineEmits<{
-	"on-click-emit": [index: number, new_symbol: "nought" | "cross"];
+	"game-move-emit": [index: number, new_symbol: "nought" | "cross"];
 }>();
 
-function onClick() {
+function onClick(): void {
 	if (!is_playing) {
 		return;
 	}
@@ -85,10 +86,10 @@ function onClick() {
 	}
 
 	if (current_player === 1) {
-		emits("on-click-emit", index, player_symbol_map.player_one);
+		emits("game-move-emit", index, player_symbol_map.player_one);
 		//
-	} else if (current_player === 2) {
-		emits("on-click-emit", index, player_symbol_map.player_two);
+	} else if (current_player === 2 && game_mode === "player") {
+		emits("game-move-emit", index, player_symbol_map.player_two);
 		//
 	}
 }

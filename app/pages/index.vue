@@ -29,38 +29,6 @@
 			</div>
 		</section>
 
-		<section
-			v-else-if="game_mode === 'player'"
-			class="w-full flex flex-col items-center"
-		>
-			<ChangeLandingPageDisplayComponent
-				class="absolute left-[10vw] top-7 sm:top-18.5"
-				@click="handleModeStateChange(0)"
-			/>
-
-			<h2 class="text-center text-lg sm:text-xl font-bold mb-10">
-				Player 1: Choose your side:
-			</h2>
-
-			<div class="flex flex-col sm:flex-row items-center gap-8">
-				<NuxtLink
-					to="/player-vs-player"
-					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-green-800 hover:cursor-pointer"
-					@click="handleChooseSymbolClick('nought')"
-				>
-					Noughts
-				</NuxtLink>
-
-				<NuxtLink
-					to="/player-vs-player"
-					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-blue-800 hover:cursor-pointer"
-					@click="handleChooseSymbolClick('cross')"
-				>
-					Crosses
-				</NuxtLink>
-			</div>
-		</section>
-
 		<section v-else class="w-full flex flex-col items-center">
 			<ChangeLandingPageDisplayComponent
 				class="absolute left-[10vw] top-7 sm:top-18.5"
@@ -68,8 +36,39 @@
 			/>
 
 			<h2 class="text-center text-lg sm:text-xl font-bold mb-10">
-				Player, choose your side:
+				Player<span v-if="game_mode === 'player'"> 1</span>, choose your
+				side:
 			</h2>
+
+			<div class="flex flex-col sm:flex-row items-center gap-8">
+				<NuxtLink
+					:to="
+						game_mode === 'player'
+							? '/player-vs-player'
+							: game_mode === 'computer'
+							? '/player-vs-computer'
+							: ''
+					"
+					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-green-800 cursor-pointer"
+					@click="handleChooseSymbolClick('nought')"
+				>
+					Noughts
+				</NuxtLink>
+
+				<NuxtLink
+					:to="
+						game_mode === 'player'
+							? '/player-vs-player'
+							: game_mode === 'computer'
+							? '/player-vs-computer'
+							: ''
+					"
+					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-blue-800 hover:cursor-pointer"
+					@click="handleChooseSymbolClick('cross')"
+				>
+					Crosses
+				</NuxtLink>
+			</div>
 		</section>
 
 		<FooterComponent />
