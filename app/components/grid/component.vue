@@ -9,6 +9,7 @@
 			:index="index"
 			:current_player="current_player"
 			:player_symbol_map="player_symbol_map"
+			:is_playing="is_playing"
 			@on-click-emit="onClickEmitTwo"
 		/>
 	</section>
@@ -19,7 +20,7 @@ import type { PropType } from "vue";
 import type GridSquare from "~~/types/grid-square.ts";
 import type PlayerSymbolMap from "~~/types/player-symbol-map.ts";
 
-const { grid, current_player, player_symbol_map } = defineProps({
+const { grid, current_player, player_symbol_map, is_playing } = defineProps({
 	grid: {
 		type: Array as PropType<GridSquare[]>,
 		required: true,
@@ -30,6 +31,10 @@ const { grid, current_player, player_symbol_map } = defineProps({
 	},
 	player_symbol_map: {
 		type: Object as PropType<PlayerSymbolMap>,
+		required: true,
+	},
+	is_playing: {
+		type: Boolean,
 		required: true,
 	},
 });

@@ -17,6 +17,7 @@
 			:grid="grid"
 			:current_player="current_player"
 			:player_symbol_map="player_symbol_map"
+			:is_playing="is_playing"
 			@on-click-emit-two="handlePlayerMove"
 			class=""
 		/>
@@ -48,24 +49,31 @@ async function handlePlayerMove(
 	if (!is_playing.value) {
 		return;
 	}
-	game_turn.value++;
 
 	const square = grid.value[index];
 
 	if (!square || index < 0 || index >= grid.value.length) {
 		return;
 	}
+
+	if (square.symbol !== 0) {
+		return;
+	}
+
 	square.symbol = new_symbol;
+	game_turn.value++;
 
 	await nextTick();
 	checkForWin(grid, player_has_won, game_is_a_draw, game_turn);
+
+	const winning_player = current_player.value;
 
 	if (player_has_won.value === true) {
 		is_playing.value = false;
 
 		setTimeout(() => {
 			alert(
-				`Player ${current_player.value} wins! Click 'Ok' to play a new game.`
+				`Player ${winning_player} wins! Click 'Ok' to play a new game.`
 			);
 			resetGame();
 		}, 300);
