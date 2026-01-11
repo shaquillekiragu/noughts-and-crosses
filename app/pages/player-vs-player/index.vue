@@ -6,7 +6,7 @@
 
 		<BackButtonComponent
 			link_url="/"
-			class="absolute left-[10vw] -top-13 sm:-top-2"
+			class="absolute left-[10vw] -top-13 sm:-top-1.5"
 		/>
 
 		<h1 class="text-center text-2xl sm:text-3xl font-bold mb-15">

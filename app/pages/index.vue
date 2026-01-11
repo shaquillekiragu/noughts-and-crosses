@@ -1,6 +1,6 @@
 <template>
 	<main class="w-screen min-h-screen flex flex-col items-center mt-20">
-		<h1 class="text-center text-2xl sm:text-3xl font-bold mb-50">
+		<h1 class="text-center text-2xl sm:text-3xl font-bold mb-35 sm:mb-45">
 			Noughts and Crosses
 		</h1>
 
@@ -14,14 +14,14 @@
 
 			<div class="flex flex-col items-center gap-8">
 				<button
-					class="w-60 h-15 flex justify-center items-center rounded-lg text-xl text-white bg-blue-800 hover:cursor-pointer"
+					class="w-55 sm:w-60 h-13 sm:h-15 flex justify-center items-center rounded-lg text-lg sm:text-xl text-white bg-blue-800 hover:cursor-pointer"
 					@click="handleModeStateChange('player')"
 				>
 					Player vs Player
 				</button>
 
 				<button
-					class="w-60 h-15 flex justify-center items-center rounded-lg text-xl text-white bg-green-800 hover:cursor-pointer"
+					class="w-55 sm:w-60 h-13 sm:h-15 flex justify-center items-center rounded-lg text-lg sm:text-xl text-white bg-green-800 hover:cursor-pointer"
 					@click="handleModeStateChange('computer')"
 				>
 					Player vs Computer
@@ -34,7 +34,7 @@
 			class="w-full flex flex-col items-center"
 		>
 			<ChangeLandingPageDisplayComponent
-				class="absolute left-[10vw] top-15"
+				class="absolute left-[10vw] top-7 sm:top-18.5"
 				@click="handleModeStateChange(0)"
 			/>
 
@@ -63,7 +63,7 @@
 
 		<section v-else class="w-full flex flex-col items-center">
 			<ChangeLandingPageDisplayComponent
-				class="absolute left-[10vw] top-15"
+				class="absolute left-[10vw] top-7 sm:top-18.5"
 				@click="handleModeStateChange(0)"
 			/>
 

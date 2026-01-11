@@ -1,7 +1,7 @@
 <template>
 	<NuxtLink
 		:to="link_url"
-		class="w-10 sm:w-12 aspect-square flex justify-center items-center rounded-full bg-slate-300"
+		class="w-9 sm:w-12 aspect-square flex justify-center items-center rounded-full bg-slate-300"
 	>
 		<Icon
 			name="material-symbols:chevron-left-rounded"
