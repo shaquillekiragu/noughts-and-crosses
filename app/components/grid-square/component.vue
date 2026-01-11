@@ -32,29 +32,44 @@ import type { PropType } from "vue";
 import type GridSquare from "~~/types/grid-square.ts";
 import type PlayerSymbolMap from "~~/types/player-symbol-map.ts";
 
-const { grid_square, index, current_player, player_symbol_map, is_playing } =
-	defineProps({
-		grid_square: {
-			type: Object as PropType<GridSquare>,
-			required: true,
-		},
-		index: {
-			type: Number,
-			required: true,
-		},
-		current_player: {
-			type: Number as PropType<1 | 2>,
-			required: true,
-		},
-		player_symbol_map: {
-			type: Object as PropType<PlayerSymbolMap>,
-			required: true,
-		},
-		is_playing: {
-			type: Boolean,
-			required: true,
-		},
-	});
+const {
+	game_mode,
+	grid_square,
+	index,
+	current_player,
+	player_symbol_map,
+	is_playing,
+	game_turn,
+} = defineProps({
+	game_mode: {
+		type: String as PropType<0 | "player" | "computer">,
+		required: true,
+	},
+	grid_square: {
+		type: Object as PropType<GridSquare>,
+		required: true,
+	},
+	index: {
+		type: Number,
+		required: true,
+	},
+	current_player: {
+		type: Number as PropType<1 | 2>,
+		required: true,
+	},
+	player_symbol_map: {
+		type: Object as PropType<PlayerSymbolMap>,
+		required: true,
+	},
+	is_playing: {
+		type: Boolean,
+		required: true,
+	},
+	game_turn: {
+		type: Number,
+		required: true,
+	},
+});
 
 const emits = defineEmits<{
 	"on-click-emit": [index: number, new_symbol: "nought" | "cross"];

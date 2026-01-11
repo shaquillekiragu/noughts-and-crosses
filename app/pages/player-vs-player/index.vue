@@ -2,7 +2,10 @@
 	<main
 		class="w-screen min-h-screen relative flex flex-col items-center mt-20 sm:mt-15"
 	>
-		<HeaderComponent :current_player="current_player" />
+		<HeaderComponent
+			:current_player="current_player"
+			:game_mode="game_mode"
+		/>
 
 		<BackButtonComponent
 			link_url="/"
@@ -14,10 +17,12 @@
 		</h1>
 
 		<GridComponent
+			:game_mode="game_mode"
 			:grid="grid"
 			:current_player="current_player"
 			:player_symbol_map="player_symbol_map"
 			:is_playing="is_playing"
+			:game_turn="game_turn"
 			@on-click-emit-two="handlePlayerMove"
 			class=""
 		/>
@@ -32,6 +37,7 @@ import useGameState from "~/composables/useGameState";
 import checkForWin from "~/composables/checkForWin";
 
 const {
+	game_mode,
 	grid,
 	current_player,
 	is_playing,
@@ -90,16 +96,4 @@ async function handlePlayerMove(
 		current_player.value = current_player.value === 1 ? 2 : 1;
 	}
 }
-
-onMounted(() => {
-	if (
-		player_symbol_map.value.player_one ===
-		player_symbol_map.value.player_two
-	) {
-		player_symbol_map.value = {
-			player_one: "nought",
-			player_two: "cross",
-		};
-	}
-});
 </script>
