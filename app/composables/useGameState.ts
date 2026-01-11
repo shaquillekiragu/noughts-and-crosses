@@ -13,8 +13,8 @@ export default function useGameState() {
 	const player_symbol_map = useState<PlayerSymbolMap>(
 		"player_symbol_map",
 		() => ({
-			player_one: 0,
-			player_two: 0,
+			player_one: "nought",
+			player_two: "cross",
 		})
 	);
 
@@ -40,8 +40,8 @@ export default function useGameState() {
 		game_is_a_draw.value = false;
 
 		player_symbol_map.value = {
-			player_one: 0,
-			player_two: 0,
+			player_one: "nought",
+			player_two: "cross",
 		};
 	}
 

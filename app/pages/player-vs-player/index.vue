@@ -90,4 +90,16 @@ async function handlePlayerMove(
 		current_player.value = current_player.value === 1 ? 2 : 1;
 	}
 }
+
+onMounted(() => {
+	if (
+		player_symbol_map.value.player_one ===
+		player_symbol_map.value.player_two
+	) {
+		player_symbol_map.value = {
+			player_one: "nought",
+			player_two: "cross",
+		};
+	}
+});
 </script>
