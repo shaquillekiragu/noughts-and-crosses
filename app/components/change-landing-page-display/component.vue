@@ -1,6 +1,6 @@
 <template>
 	<button
-		class="w-10 sm:w-12 aspect-square flex justify-center items-center rounded-full bg-slate-300"
+		class="w-10 sm:w-12 aspect-square flex justify-center items-center rounded-full bg-slate-300 hover:cursor-pointer"
 	>
 		<Icon
 			name="material-symbols:chevron-left-rounded"
@@ -8,12 +8,3 @@
 		/>
 	</button>
 </template>
-
-<!-- <script setup lang="ts">
-const { styles } = defineProps({
-	styles: {
-		type: String,
-		required: true,
-	},
-});
-</script> -->

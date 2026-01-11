@@ -12,18 +12,16 @@
 				Which game mode do you want to play?
 			</h2>
 
-			<div
-				class="flex flex-col items-center gap-8 *:w-60 *:h-15 *:flex *:justify-center *:items-center *:rounded-lg *:text-xl *:text-white *:hover:cursor-pointer"
-			>
+			<div class="flex flex-col items-center gap-8">
 				<button
-					class="bg-blue-800"
+					class="w-60 h-15 flex justify-center items-center rounded-lg text-xl text-white bg-blue-800 hover:cursor-pointer"
 					@click="handleLandingPageDisplayChange(1)"
 				>
 					Player vs Player
 				</button>
 
 				<button
-					class="bg-green-800"
+					class="w-60 h-15 flex justify-center items-center rounded-lg text-xl text-white bg-green-800 hover:cursor-pointer"
 					@click="handleLandingPageDisplayChange(2)"
 				>
 					Player vs Computer
@@ -44,12 +42,10 @@
 				Player 1: Choose your side:
 			</h2>
 
-			<div
-				class="flex flex-col sm:flex-row items-center gap-8 *:w-45 *:h-14 *:flex *:justify-center *:items-center *:rounded-lg *:text-xl *:text-white *:hover:cursor-pointer"
-			>
+			<div class="flex flex-col sm:flex-row items-center gap-8">
 				<NuxtLink
 					to="/player-vs-player"
-					class="bg-green-800"
+					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-green-800 hover:cursor-pointer"
 					@click="handleChooseSymbolClick(1)"
 				>
 					<!-- The symbol index for Noughts is 1 -->
@@ -58,7 +54,7 @@
 
 				<NuxtLink
 					to="/player-vs-player"
-					class="bg-blue-800"
+					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-blue-800 hover:cursor-pointer"
 					@click="handleChooseSymbolClick(2)"
 				>
 					<!-- The symbol index for Noughts is 2 -->
@@ -84,12 +80,23 @@
 
 <script setup lang="ts">
 import useGameState from "~/composables/useGameState";
+import useModeState from "~/composables/useModeState";
 
 const { player_symbol_map } = useGameState();
+const game_mode = useModeState();
+
 const landing_page_display = ref<0 | 1 | 2>(0);
 
 function handleLandingPageDisplayChange(index: 0 | 1 | 2) {
 	landing_page_display.value = index;
+
+	if (index === 1) {
+		game_mode.value = "player";
+	} else if (index === 2) {
+		game_mode.value = "computer";
+	} else {
+		game_mode.value = index;
+	}
 }
 
 function handleChooseSymbolClick(symbol_index: 1 | 2) {
@@ -101,5 +108,6 @@ function handleChooseSymbolClick(symbol_index: 1 | 2) {
 
 onMounted(() => {
 	landing_page_display.value = 0;
+	game_mode.value = 0;
 });
 </script>
