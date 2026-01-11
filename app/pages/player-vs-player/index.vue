@@ -64,7 +64,9 @@ async function handlePlayerMove(
 		is_playing.value = false;
 
 		setTimeout(() => {
-			alert("You win! Click 'Ok' to play again.");
+			alert(
+				`Player ${current_player.value} wins! Click 'Ok' to play a new game.`
+			);
 			resetGame();
 		}, 300);
 		//
@@ -72,7 +74,7 @@ async function handlePlayerMove(
 		is_playing.value = false;
 
 		setTimeout(() => {
-			alert("It's a draw! Nice try, click 'Ok' to play again.");
+			alert("It's a draw! Nice try, click 'Ok' to play a new game.");
 			resetGame();
 		}, 300);
 		//
