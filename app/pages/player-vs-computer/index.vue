@@ -43,7 +43,7 @@ const {
 	current_player,
 	is_playing,
 	game_turn,
-	player_has_won,
+	game_is_a_win,
 	game_is_a_draw,
 	player_symbol_map,
 	resetGame,
@@ -71,11 +71,11 @@ async function handleGameMove(
 	game_turn.value++;
 
 	await nextTick();
-	useWinChecker(grid, player_has_won, game_is_a_draw, game_turn);
+	useWinChecker(grid, game_is_a_win, game_is_a_draw, game_turn);
 
 	const winner = current_player.value === 1 ? "Player" : "Computer";
 
-	if (player_has_won.value === true) {
+	if (game_is_a_win.value === true) {
 		is_playing.value = false;
 
 		setTimeout(() => {

@@ -3,7 +3,7 @@ import type GridSquare from "~~/types/grid-square";
 
 export default function useWinChecker(
 	grid: Ref<GridSquare[]>,
-	player_has_won: Ref<boolean>,
+	game_is_a_win: Ref<boolean>,
 	game_is_a_draw: Ref<boolean>,
 	game_turn: Ref<number>
 ): void {
@@ -35,7 +35,7 @@ export default function useWinChecker(
 			square_zero.symbol !== 0;
 
 		if (meets_win_condition) {
-			player_has_won.value = true;
+			game_is_a_win.value = true;
 			return;
 		}
 	}
