@@ -24,7 +24,7 @@ import type PlayerSymbolMap from "~~/types/player-symbol-map.ts";
 const { game_mode, grid, current_player, player_symbol_map, is_playing } =
 	defineProps({
 		game_mode: {
-			type: String as PropType<0 | "player" | "computer">,
+			type: [Number, String] as PropType<0 | "player" | "computer">,
 			required: true,
 		},
 		grid: {

@@ -77,10 +77,8 @@
 
 <script setup lang="ts">
 import useGameState from "~/composables/useGameState";
-import useModeState from "~/composables/useModeState";
 
-const { player_symbol_map } = useGameState();
-const game_mode = useModeState();
+const { game_mode, player_symbol_map } = useGameState();
 
 function handleModeStateChange(mode: 0 | "player" | "computer") {
 	game_mode.value = mode;

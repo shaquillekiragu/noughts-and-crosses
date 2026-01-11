@@ -17,7 +17,7 @@ const { current_player, game_mode } = defineProps({
 		required: true,
 	},
 	game_mode: {
-		type: String as PropType<0 | "player" | "computer">,
+		type: [Number, String] as PropType<0 | "player" | "computer">,
 		required: true,
 	},
 });

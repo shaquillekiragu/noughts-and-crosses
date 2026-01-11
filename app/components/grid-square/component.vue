@@ -47,7 +47,7 @@ const {
 	is_playing,
 } = defineProps({
 	game_mode: {
-		type: String as PropType<0 | "player" | "computer">,
+		type: [Number, String] as PropType<0 | "player" | "computer">,
 		required: true,
 	},
 	grid_square: {
