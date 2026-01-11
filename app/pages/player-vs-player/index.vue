@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { nextTick } from "vue";
 import useGameState from "~/composables/useGameState";
-import useWinCheck from "~/composables/useWinCheck";
+import useWinChecker from "~/composables/useWinChecker";
 
 const {
 	game_mode,
@@ -70,7 +70,7 @@ async function handleGameMove(
 	game_turn.value++;
 
 	await nextTick();
-	useWinCheck(grid, player_has_won, game_is_a_draw, game_turn);
+	useWinChecker(grid, player_has_won, game_is_a_draw, game_turn);
 
 	const winner = current_player.value;
 
