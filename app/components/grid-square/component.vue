@@ -1,11 +1,13 @@
 <template>
 	<article
-		class="w-full aspect-square flex justify-center items-center hover:cursor-pointer hover:bg-slate-100"
+		class="w-full aspect-square flex justify-center items-center"
 		:class="{
 			'border-r-0 pr-[5px] sm:pr-[6px] xl:pr-[8px]':
 				index === 2 || index === 5,
 			'border-b-0 pb-[5px] sm:pb-[6px] xl:pb-[8px]':
 				index === 6 || index === 7,
+			'hover:cursor-pointer hover:bg-slate-100': grid_square.symbol === 0,
+			'cursor-not-allowed opacity-75': grid_square.symbol !== 0,
 		}"
 		@click="onClick"
 	>
