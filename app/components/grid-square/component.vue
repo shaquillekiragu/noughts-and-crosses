@@ -8,8 +8,7 @@
 				index === 6 || index === 7,
 			'hover:cursor-pointer hover:bg-slate-100':
 				grid_square.symbol === 0 && is_playing,
-			'cursor-not-allowed opacity-75':
-				grid_square.symbol !== 0 || !is_playing,
+			'cursor-not-allowed': grid_square.symbol !== 0 || !is_playing,
 		}"
 		@click="onClick"
 	>
@@ -58,7 +57,7 @@ const { grid_square, index, current_player, player_symbol_map, is_playing } =
 	});
 
 const emits = defineEmits<{
-	"on-click-emit": [index: number, new_symbol: 0 | "nought" | "cross"];
+	"on-click-emit": [index: number, new_symbol: "nought" | "cross"];
 }>();
 
 function onClick() {
