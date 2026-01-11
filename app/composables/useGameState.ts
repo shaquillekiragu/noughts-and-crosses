@@ -2,13 +2,14 @@ import type GridSquare from "~~/types/grid-square";
 import type PlayerSymbolMap from "~~/types/player-symbol-map.ts";
 
 export default function useGameState() {
-	const game_mode = ref<0 | "player" | "computer">(0);
 	const grid = ref<GridSquare[]>([]);
 	const current_player = ref<1 | 2>(1);
 	const is_playing = ref<boolean>(true);
 	const game_turn = ref<number>(0);
 	const player_has_won = ref<boolean>(false);
 	const game_is_a_draw = ref<boolean>(false);
+
+	const game_mode = useState<0 | "player" | "computer">("game_mode", () => 0);
 
 	const player_symbol_map = useState<PlayerSymbolMap>(
 		"player_symbol_map",

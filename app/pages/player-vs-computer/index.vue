@@ -102,11 +102,16 @@ async function handleGameMove(
 		current_player.value === 2 &&
 		is_playing.value
 	) {
-		const random_index = useComputerMove(grid.value);
+		setTimeout(() => {
+			const random_index = useComputerMove(grid.value);
 
-		if (random_index >= 0 && random_index < grid.value.length) {
-			handleGameMove(random_index, player_symbol_map.value.player_two);
-		}
+			if (random_index >= 0 && random_index < grid.value.length) {
+				handleGameMove(
+					random_index,
+					player_symbol_map.value.player_two
+				);
+			}
+		}, 500);
 	}
 }
 </script>
