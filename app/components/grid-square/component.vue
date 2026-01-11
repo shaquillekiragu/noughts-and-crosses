@@ -10,14 +10,14 @@
 		@click="onClick"
 	>
 		<div
-			v-if="grid_square.symbol_index === 1"
+			v-if="grid_square.symbol === 'nought'"
 			class="w-2/3 h-2/3 bg-black flex justify-center items-center rounded-full"
 		>
 			<div class="w-2/3 h-2/3 rounded-full bg-slate-100 z-1"></div>
 		</div>
 
 		<Icon
-			v-if="grid_square.symbol_index === 2"
+			v-if="grid_square.symbol === 'cross'"
 			name="fluent-emoji-high-contrast:cross-mark"
 			class="!w-2/3 !h-2/3"
 		/>
@@ -49,19 +49,19 @@ const { grid_square, index, current_player, player_symbol_map } = defineProps({
 });
 
 const emits = defineEmits<{
-	"on-click-emit": [index: number, new_symbol_index: 1 | 2];
+	"on-click-emit": [index: number, new_symbol: 0 | "nought" | "cross"];
 }>();
 
 function onClick() {
-	if (grid_square.symbol_index === 0 && current_player === 1) {
+	if (grid_square.symbol === 0 && current_player === 1) {
 		//
-		grid_square.symbol_index = player_symbol_map.player_one;
+		grid_square.symbol = player_symbol_map.player_one;
 
 		emits("on-click-emit", index, player_symbol_map.player_one);
 		//
-	} else if (grid_square.symbol_index === 0 && current_player === 2) {
+	} else if (grid_square.symbol === 0 && current_player === 2) {
 		//
-		grid_square.symbol_index = player_symbol_map.player_two;
+		grid_square.symbol = player_symbol_map.player_two;
 
 		emits("on-click-emit", index, player_symbol_map.player_two);
 	}

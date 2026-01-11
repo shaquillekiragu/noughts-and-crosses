@@ -35,10 +35,10 @@ const { grid, current_player, player_symbol_map } = defineProps({
 });
 
 const emits = defineEmits<{
-	"on-click-emit-two": [index: number, new_symbol_index: 1 | 2];
+	"on-click-emit-two": [index: number, new_symbol: 0 | "nought" | "cross"];
 }>();
 
-function onClickEmitTwo(index: number, new_symbol_index: 1 | 2) {
-	emits("on-click-emit-two", index, new_symbol_index);
+function onClickEmitTwo(index: number, new_symbol: 0 | "nought" | "cross") {
+	emits("on-click-emit-two", index, new_symbol);
 }
 </script>

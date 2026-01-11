@@ -30,9 +30,9 @@ export default function checkForWin(
 		}
 
 		const meets_win_condition =
-			square_zero.symbol_index === square_one.symbol_index &&
-			square_one.symbol_index === square_two.symbol_index &&
-			square_zero.symbol_index !== 0;
+			square_zero.symbol === square_one.symbol &&
+			square_one.symbol === square_two.symbol &&
+			square_zero.symbol !== 0;
 
 		if (meets_win_condition) {
 			player_has_won.value = true;

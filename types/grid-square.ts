@@ -1,3 +1,3 @@
 export default interface GridSquare {
-	symbol_index: 0 | 1 | 2;
+	symbol: 0 | "nought" | "cross";
 }

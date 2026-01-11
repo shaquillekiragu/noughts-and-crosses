@@ -5,7 +5,7 @@
 		</h1>
 
 		<section
-			v-if="landing_page_display === 0"
+			v-if="game_mode === 0"
 			class="w-full flex flex-col items-center"
 		>
 			<h2 class="text-center text-lg sm:text-xl font-bold mb-10">
@@ -15,14 +15,14 @@
 			<div class="flex flex-col items-center gap-8">
 				<button
 					class="w-60 h-15 flex justify-center items-center rounded-lg text-xl text-white bg-blue-800 hover:cursor-pointer"
-					@click="handleLandingPageDisplayChange(1)"
+					@click="handleModeStateChange('player')"
 				>
 					Player vs Player
 				</button>
 
 				<button
 					class="w-60 h-15 flex justify-center items-center rounded-lg text-xl text-white bg-green-800 hover:cursor-pointer"
-					@click="handleLandingPageDisplayChange(2)"
+					@click="handleModeStateChange('computer')"
 				>
 					Player vs Computer
 				</button>
@@ -30,12 +30,12 @@
 		</section>
 
 		<section
-			v-else-if="landing_page_display === 1"
+			v-else-if="game_mode === 'player'"
 			class="w-full flex flex-col items-center"
 		>
 			<ChangeLandingPageDisplayComponent
 				class="absolute left-[10vw] top-15"
-				@click="handleLandingPageDisplayChange(0)"
+				@click="handleModeStateChange(0)"
 			/>
 
 			<h2 class="text-center text-lg sm:text-xl font-bold mb-10">
@@ -46,18 +46,16 @@
 				<NuxtLink
 					to="/player-vs-player"
 					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-green-800 hover:cursor-pointer"
-					@click="handleChooseSymbolClick(1)"
+					@click="handleChooseSymbolClick('nought')"
 				>
-					<!-- The symbol index for Noughts is 1 -->
 					Noughts
 				</NuxtLink>
 
 				<NuxtLink
 					to="/player-vs-player"
 					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-blue-800 hover:cursor-pointer"
-					@click="handleChooseSymbolClick(2)"
+					@click="handleChooseSymbolClick('cross')"
 				>
-					<!-- The symbol index for Noughts is 2 -->
 					Crosses
 				</NuxtLink>
 			</div>
@@ -66,7 +64,7 @@
 		<section v-else class="w-full flex flex-col items-center">
 			<ChangeLandingPageDisplayComponent
 				class="absolute left-[10vw] top-15"
-				@click="handleLandingPageDisplayChange(0)"
+				@click="handleModeStateChange(0)"
 			/>
 
 			<h2 class="text-center text-lg sm:text-xl font-bold mb-10">
@@ -85,29 +83,18 @@ import useModeState from "~/composables/useModeState";
 const { player_symbol_map } = useGameState();
 const game_mode = useModeState();
 
-const landing_page_display = ref<0 | 1 | 2>(0);
-
-function handleLandingPageDisplayChange(index: 0 | 1 | 2) {
-	landing_page_display.value = index;
-
-	if (index === 1) {
-		game_mode.value = "player";
-	} else if (index === 2) {
-		game_mode.value = "computer";
-	} else {
-		game_mode.value = index;
-	}
+function handleModeStateChange(mode: 0 | "player" | "computer") {
+	game_mode.value = mode;
 }
 
-function handleChooseSymbolClick(symbol_index: 1 | 2) {
-	player_symbol_map.value.player_one = symbol_index;
+function handleChooseSymbolClick(symbol: "nought" | "cross") {
+	player_symbol_map.value.player_one = symbol;
 
 	player_symbol_map.value.player_two =
-		player_symbol_map.value.player_one === 1 ? 2 : 1;
+		player_symbol_map.value.player_one === "nought" ? "cross" : "nought";
 }
 
 onMounted(() => {
-	landing_page_display.value = 0;
 	game_mode.value = 0;
 });
 </script>

@@ -41,7 +41,10 @@ const {
 	resetGame,
 } = useGameState();
 
-async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
+async function handlePlayerMove(
+	index: number,
+	new_symbol: 0 | "nought" | "cross"
+) {
 	if (!is_playing.value) {
 		return;
 	}
@@ -52,7 +55,7 @@ async function handlePlayerMove(index: number, new_symbol_index: 1 | 2) {
 	if (!square || index < 0 || index >= grid.value.length) {
 		return;
 	}
-	square.symbol_index = new_symbol_index;
+	square.symbol = new_symbol;
 
 	await nextTick();
 	checkForWin(grid, player_has_won, game_is_a_draw, game_turn);

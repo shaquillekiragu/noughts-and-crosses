@@ -2,6 +2,7 @@ import type GridSquare from "~~/types/grid-square";
 import type PlayerSymbolMap from "~~/types/player-symbol-map.ts";
 
 export default function useGameState() {
+	const game_mode = ref<0 | "player" | "computer">(0);
 	const grid = ref<GridSquare[]>([]);
 	const current_player = ref<1 | 2>(1);
 	const is_playing = ref<boolean>(true);
@@ -12,8 +13,8 @@ export default function useGameState() {
 	const player_symbol_map = useState<PlayerSymbolMap>(
 		"player_symbol_map",
 		() => ({
-			player_one: 1,
-			player_two: 1,
+			player_one: 0,
+			player_two: 0,
 		})
 	);
 
@@ -22,7 +23,7 @@ export default function useGameState() {
 
 		for (let i = 0; i < 9; i++) {
 			grid.value.push({
-				symbol_index: 0,
+				symbol: 0,
 			});
 		}
 	}
@@ -31,6 +32,7 @@ export default function useGameState() {
 		navigateTo("/");
 		initializeGrid();
 
+		game_mode.value = 0;
 		current_player.value = 1;
 		is_playing.value = true;
 		game_turn.value = 0;
@@ -38,14 +40,15 @@ export default function useGameState() {
 		game_is_a_draw.value = false;
 
 		player_symbol_map.value = {
-			player_one: 1,
-			player_two: 1,
+			player_one: 0,
+			player_two: 0,
 		};
 	}
 
 	initializeGrid();
 
 	return {
+		game_mode,
 		grid,
 		current_player,
 		is_playing,
