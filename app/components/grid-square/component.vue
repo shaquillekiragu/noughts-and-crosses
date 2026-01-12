@@ -1,6 +1,6 @@
 <template>
 	<article
-		class="w-full aspect-square flex justify-center items-center"
+		class="w-full aspect-square flex justify-center items-center transition-all duration-200"
 		:class="{
 			'border-r-0 pr-[5px] sm:pr-[6px] xl:pr-[8px]':
 				index === 2 || index === 5,
@@ -8,27 +8,39 @@
 			'border-b-0 pb-[5px] sm:pb-[6px] xl:pb-[8px]':
 				index === 6 || index === 7,
 			//
-			'hover:cursor-pointer hover:bg-slate-100':
+			'hover:cursor-pointer hover:brightness-90 hover:shadow-inner':
 				grid_square.symbol === 0 && is_playing,
 			//
 			'cursor-not-allowed':
 				grid_square.symbol !== 0 ||
 				!is_playing ||
 				(game_mode === 'computer' && current_player === 2),
+			//
+			'bg-yellow-700': ((index % 3) + Math.floor(index / 3)) % 2 === 0,
+			'bg-yellow-900': ((index % 3) + Math.floor(index / 3)) % 2 === 1,
 		}"
 		@click="onClick"
 	>
 		<div
 			v-if="grid_square.symbol === 'nought'"
-			class="w-2/3 h-2/3 bg-black flex justify-center items-center rounded-full"
+			class="w-2/3 h-2/3 flex justify-center items-center rounded-full bg-black shadow-lg"
 		>
-			<div class="w-2/3 h-2/3 rounded-full bg-slate-100 z-1"></div>
+			<div
+				class="w-2/3 h-2/3 rounded-full z-1"
+				:class="{
+					'bg-yellow-700':
+						((index % 3) + Math.floor(index / 3)) % 2 === 0,
+					'bg-yellow-900':
+						((index % 3) + Math.floor(index / 3)) % 2 === 1,
+				}"
+			></div>
 		</div>
 
 		<Icon
 			v-if="grid_square.symbol === 'cross'"
 			name="fluent-emoji-high-contrast:cross-mark"
-			class="!w-2/3 !h-2/3"
+			class="!w-2/3 !h-2/3 drop-shadow-lg"
+			style="filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))"
 		/>
 	</article>
 </template>

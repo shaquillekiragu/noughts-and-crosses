@@ -2,7 +2,9 @@
 	<section
 		class="w-screen h-[10vh] fixed top-0 flex justify-end items-center"
 	>
-		<p class="mr-[15vw] text-sm sm:text-base lg:text-lg text-blue-600">
+		<p
+			class="mr-[15vw] text-sm sm:text-base lg:text-lg text-amber-900 font-semibold drop-shadow-sm"
+		>
 			{{ current_player_message }}
 		</p>
 	</section>
