@@ -12,21 +12,11 @@
 			class="absolute left-[10vw] -top-13 sm:-top-1.5"
 		/>
 
-		<div
-			class="w-full flex flex-col justify-center items-center gap-3 sm:gap-4 mb-6 lg:mb-8"
+		<h1
+			class="text-center text-2xl sm:text-3xl mb-6 lg:mb-10 font-bold text-amber-900 drop-shadow-md"
 		>
-			<h1
-				class="text-center text-2xl sm:text-3xl font-bold text-amber-900 drop-shadow-md"
-			>
-				Noughts and Crosses
-			</h1>
-
-			<p
-				class="text-center text-base sm:text-lg font-medium text-amber-900 drop-shadow-md"
-			>
-				(a.k.a Tic Tac Toe)
-			</p>
-		</div>
+			Noughts and Crosses
+		</h1>
 
 		<GridComponent
 			:game_mode="game_mode"

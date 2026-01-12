@@ -23,7 +23,7 @@
 			<h2
 				class="text-center text-lg sm:text-xl font-bold mb-10 text-amber-900"
 			>
-				Which game mode do you want to play?
+				Which mode do you want to play?
 			</h2>
 
 			<div class="flex flex-col items-center gap-8">
@@ -35,7 +35,7 @@
 				</button>
 
 				<button
-					class="w-55 sm:w-60 h-13 sm:h-15 flex justify-center items-center rounded-lg text-lg sm:text-xl text-white bg-yellow-900 hover:bg-yellow-950 hover:cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl"
+					class="w-55 sm:w-60 h-13 sm:h-15 flex justify-center items-center rounded-lg text-lg sm:text-xl text-yellow-900 bg-amber-100 border-4 border-yellow-800 hover:brightness-85 hover:border-yellow-900 hover:cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl"
 					@click="handleModeStateChange('computer')"
 				>
 					Player vs Computer
@@ -79,7 +79,7 @@
 							? '/player-vs-computer'
 							: ''
 					"
-					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-yellow-900 hover:bg-yellow-950 hover:cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl"
+					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-yellow-900 bg-amber-100 border-4 border-yellow-800 hover:brightness-85 hover:border-yellow-900 hover:cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl"
 					@click="handleChooseSymbolClick('cross')"
 				>
 					Crosses
