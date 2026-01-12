@@ -27,19 +27,17 @@
 			</h2>
 
 			<div class="flex flex-col items-center gap-8">
-				<button
-					class="w-55 sm:w-60 h-13 sm:h-15 flex justify-center items-center rounded-lg text-lg sm:text-xl text-white bg-yellow-900 hover:bg-yellow-950 hover:cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl"
+				<ChooseModeButtonComponent
+					text="Player vs Player"
+					:is_dark_button="true"
 					@click="handleModeStateChange('player')"
-				>
-					Player vs Player
-				</button>
+				/>
 
-				<button
-					class="w-55 sm:w-60 h-13 sm:h-15 flex justify-center items-center rounded-lg text-lg sm:text-xl text-yellow-900 bg-amber-100 border-4 border-yellow-800 hover:brightness-85 hover:border-yellow-900 hover:cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl"
+				<ChooseModeButtonComponent
+					text="Player vs Computer"
+					:is_dark_button="false"
 					@click="handleModeStateChange('computer')"
-				>
-					Player vs Computer
-				</button>
+				/>
 			</div>
 		</section>
 
@@ -57,33 +55,19 @@
 			</h2>
 
 			<div class="flex flex-col sm:flex-row items-center gap-8">
-				<NuxtLink
-					:to="
-						game_mode === 'player'
-							? '/player-vs-player'
-							: game_mode === 'computer'
-							? '/player-vs-computer'
-							: ''
-					"
-					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-white bg-yellow-900 hover:bg-yellow-950 cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl"
+				<ChooseSymbolButtonComponent
+					:game_mode="game_mode"
+					text="Noughts"
+					:is_dark_button="true"
 					@click="handleChooseSymbolClick('nought')"
-				>
-					Noughts
-				</NuxtLink>
+				/>
 
-				<NuxtLink
-					:to="
-						game_mode === 'player'
-							? '/player-vs-player'
-							: game_mode === 'computer'
-							? '/player-vs-computer'
-							: ''
-					"
-					class="w-45 h-14 flex justify-center items-center rounded-lg text-xl text-yellow-900 bg-amber-100 border-4 border-yellow-800 hover:brightness-85 hover:border-yellow-900 hover:cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl"
+				<ChooseSymbolButtonComponent
+					:game_mode="game_mode"
+					text="Crosses"
+					:is_dark_button="false"
 					@click="handleChooseSymbolClick('cross')"
-				>
-					Crosses
-				</NuxtLink>
+				/>
 			</div>
 		</section>
 
